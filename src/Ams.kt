@@ -1,9 +1,16 @@
 import java.util.*
 
 fun main(args: Array<String>) {
-    /*dayOfWeek()*/
-    println("${if (args[0].toInt() < 12) "Good morning, Kotlin" else "Good Night, Kotlin"}!")
 
+    println("${if (args[0].toInt() < 12) "Good morning, Kotlin" else "Good Night, Kotlin"}!")
+    feedTheFish()
+    var fortune: String
+
+    for (i in 1..10) {
+        fortune = getFortuneCookie()
+        println("\n Your fortune is : $fortune")
+        if(fortune.contains("Take it easy")) break
+    }
    /* val isUnit = println("This is an expression")
     println(isUnit)
 
@@ -13,7 +20,9 @@ fun main(args: Array<String>) {
 
     val message = "You are ${if (temperature > 50) "fried" else "safe"} fish"
     println(message)*/
-    feedTheFish()
+
+    /*dayOfWeek()*/
+
 }
 
 fun dayOfWeek() {
@@ -33,8 +42,9 @@ fun dayOfWeek() {
 
 fun feedTheFish(){
     val day = randomDay()
+    val dayNumber = randomNumber()
     val food = "pellets"
-    println("Today is $day and this fish eat $food")
+    println("Today is $day and this fish eat $food and day number $dayNumber")
 
 }
 
@@ -45,4 +55,22 @@ fun randomDay() : String {
     //returning week day with random index
     //Random().nextInt(7) is a builtin function
     return  week[Random().nextInt(7)]
+}
+
+
+fun randomNumber() : Int {
+    val listOfNumber = listOf(1,2,3,4,5,6,7)
+    return listOfNumber[Random().nextInt(7)]
+}
+
+fun getFortuneCookie() : String {
+    val listOfFortunes = listOf("You will have a great day!","Things will go well for you today.",
+        "Things will go well for you today.","Be humble and all will turn out well.",
+        "Today is a good day for exercising restraint.","Take it easy and enjoy life!",
+        "Treasure your friends because they are your greatest fortune.")
+
+    println("Enter your birthday:")
+    val birthday = readLine()?.toIntOrNull() ?: 1
+   // val remainder = birthday.div(listOfFortunes.size)
+    return listOfFortunes[birthday.rem(listOfFortunes.size)]
 }
