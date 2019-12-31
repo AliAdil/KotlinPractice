@@ -25,7 +25,6 @@ fun whatShouldIDoToday2(mood: String, weather: String = "Sunny", temperature: In
     println(result)
 
 }fun whatShouldIDoToday(mood: String, weather: String = "Sunny", temperature: Int = 24) {
-
     val result = when {
         mood == "happy" && weather == "Sunny" -> "Go for walk"
         else ->"Stay home and read"

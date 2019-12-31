@@ -4,18 +4,16 @@ fun main(args: Array<String>) {
 
     println("${if (args[0].toInt() < 12) "Good morning, Kotlin" else "Good Night, Kotlin"}!")
 
-   // feedTheFish()
-  println(canAddFish(10.0f, listOf(2,2,2),hasDecoration = false))
-  println(canAddFishReal(10.0, listOf(2,2,2),hasDecorations = false))
+    feedTheFish()
+    /* println(canAddFish(10.0f, listOf(2,2,2),hasDecoration = false))
+     println(canAddFishReal(10.0, listOf(2,2,2),hasDecorations = false))*
+       var fortune: String
 
-/*
-    var fortune: String
-
-    for (i in 1..10) {
-        fortune = getFortuneCookie(getBirthday())
-        println("\n Your fortune is : $fortune")
-        if (fortune.contains("Take it easy")) break;
-    }*/
+       for (i in 1..10) {
+           fortune = getFortuneCookie(getBirthday())
+           println("\n Your fortune is : $fortune")
+           if (fortune.contains("Take it easy")) break;
+       }*/
     /* val isUnit = println("This is an expression")
      println(isUnit)
 
@@ -30,32 +28,6 @@ fun main(args: Array<String>) {
 
 }
 
-// it is a good practice to use undefined parameters first and then default otherwise
-//compiler will give an error or you  can call by name e.g. shouldChangeWater(day="tuesday")
-fun shouldChangeWater(
-    day: String,
-    temperature: Int = 22,
-    dirty: Int = 20
-): Boolean {
-    return true
-}
-
-fun canAddFishReal(tankSize: Double, currentFish: List<Int>, fishSize: Int = 2, hasDecorations: Boolean = true): Boolean {
-    return (tankSize * if (hasDecorations) 0.8 else 1.0) >= (currentFish.sum() + fishSize)
-}
-fun canAddFish(tankSize: Float, currentFish: List<Int>, fishSize: Int = 2, hasDecoration: Boolean = true) : Boolean {
-    val myArray = IntArray(currentFish.size) { i -> currentFish[i] * fishSize}
-    val fishAfterCalculation = myArray.sum()
-    val tankSizeAfterCalculation : Float
-    if (hasDecoration) {
-        tankSizeAfterCalculation = (80 * tankSize) / 100}
-    else{
-        tankSizeAfterCalculation  = tankSize}
-
-      return (fishAfterCalculation < tankSizeAfterCalculation )
-
-}
-
 fun feedTheFish() {
     val day = randomDay()
     val dayNumber = randomNumber()
@@ -64,16 +36,84 @@ fun feedTheFish() {
     println("Today is $day and this fish eat $food and day number $dayNumber")
     swim(50)
     // function with argument
-    shouldChangeWater(day, 20, 50)
+    println("\n" + shouldChangeWater(day, 20, 20))
     // function with one argument and use two default arguments
-    shouldChangeWater(day)
+
+    println(
+        "\n Today is $day and should we change water whats your answer: " + if (shouldChangeWater(day, 30, 5)) {
+            "Yes"
+        } else {
+            "No"
+        }
+    )
     // function with with two argument but not in order it is using one default parameter
-    shouldChangeWater(day, dirty = 50)
+    println("\n" + shouldChangeWater(day, dirty = 50))
 
     if (shouldChangeWater(day)) {
-        println("Change the water")
+        println("\n Change the water")
     }
 }
+
+// it is a good practice to use undefined parameters first and then default otherwise
+//compiler will give an error or you  can call by name e.g. shouldChangeWater(day="tuesday")
+fun shouldChangeWater(day: String, temperature: Int = 22, dirty: Int = 20): Boolean {
+    /*val isToHot = temperature > 30
+     val isDirty = dirty >30
+     val isSunday = day == "Sunday"*/
+// with helper functions
+    return when {
+        isToHot(temperature) -> true
+        isDirty(dirty) -> true
+        isSunday(day) -> true
+        else -> false
+    }
+
+    //Little simplified
+    /*  return when {
+          isToHot -> true
+          isDirty -> true
+          isSunday-> true
+          else -> false
+      }*/
+    //Common Way
+/*    return when {
+        temperature > 30 -> true
+        dirty > 30 -> true
+        day == "Sunday" -> true
+        else -> false
+    }*/
+}
+
+//Return type can be inferred form the function
+/*fun isToHot(temperature: Int) :Boolean = temperature >30*/
+fun isToHot(temperature: Int) = temperature > 30
+
+fun isDirty(dirty: Int) = dirty > 30
+fun isSunday(day: String) = day == "Sunday"
+
+fun canAddFishReal(
+    tankSize: Double,
+    currentFish: List<Int>,
+    fishSize: Int = 2,
+    hasDecorations: Boolean = true
+): Boolean {
+    return (tankSize * if (hasDecorations) 0.8 else 1.0) >= (currentFish.sum() + fishSize)
+}
+
+fun canAddFish(tankSize: Float, currentFish: List<Int>, fishSize: Int = 2, hasDecoration: Boolean = true): Boolean {
+    val myArray = IntArray(currentFish.size) { i -> currentFish[i] * fishSize }
+    val fishAfterCalculation = myArray.sum()
+    val tankSizeAfterCalculation: Float
+    if (hasDecoration) {
+        tankSizeAfterCalculation = (80 * tankSize) / 100
+    } else {
+        tankSizeAfterCalculation = tankSize
+    }
+
+    return (fishAfterCalculation < tankSizeAfterCalculation)
+
+}
+
 
 fun swim(time: Int = 0, speed: String = "fast") {
     println("fishes are swimming $speed at the speed of $time km/h")
