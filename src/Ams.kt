@@ -1,10 +1,21 @@
 import java.util.*
-
+// Almost everything in kotlin is expression with value
 fun main(args: Array<String>) {
 
     println("${if (args[0].toInt() < 12) "Good morning, Kotlin" else "Good Night, Kotlin"}!")
 
     feedTheFish()
+    var bubbles = 0
+    while (bubbles < 50){
+        bubbles++
+        println(bubbles)
+    }
+
+    // Control flow function from standard libaray
+    // repeat (function from standard libaray)
+    repeat(2){
+    println("A fish is swing")
+    }
     /* println(canAddFish(10.0f, listOf(2,2,2),hasDecoration = false))
      println(canAddFishReal(10.0, listOf(2,2,2),hasDecorations = false))*
        var fortune: String
@@ -27,7 +38,12 @@ fun main(args: Array<String>) {
     /*dayOfWeek()*/
 
 }
+ fun makeNewAquarium() = println("Building a new aquarium.......")
+//Any Can Hold any type of Object
+fun aquariumStatusReport(aquarium : Any = makeNewAquarium()){
 
+}
+////////////////////////////////////////////////////////////////////////////////////
 fun feedTheFish() {
     val day = randomDay()
     val dayNumber = randomNumber()
@@ -54,9 +70,10 @@ fun feedTheFish() {
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////
 // it is a good practice to use undefined parameters first and then default otherwise
 //compiler will give an error or you  can call by name e.g. shouldChangeWater(day="tuesday")
-fun shouldChangeWater(day: String, temperature: Int = 22, dirty: Int = 20): Boolean {
+fun shouldChangeWater(day: String, temperature: Int = 22, dirty: Int = getDirtySensorReading()): Boolean {
     /*val isToHot = temperature > 30
      val isDirty = dirty >30
      val isSunday = day == "Sunday"*/
@@ -83,14 +100,16 @@ fun shouldChangeWater(day: String, temperature: Int = 22, dirty: Int = 20): Bool
         else -> false
     }*/
 }
-
+///////////////////////////////////////////////////////////////////////////////////
 //Return type can be inferred form the function
 /*fun isToHot(temperature: Int) :Boolean = temperature >30*/
 fun isToHot(temperature: Int) = temperature > 30
-
 fun isDirty(dirty: Int) = dirty > 30
 fun isSunday(day: String) = day == "Sunday"
+fun getDirtySensorReading() = 20
 
+
+///////////////////////////////////////////////////////////////
 fun canAddFishReal(
     tankSize: Double,
     currentFish: List<Int>,
@@ -100,6 +119,7 @@ fun canAddFishReal(
     return (tankSize * if (hasDecorations) 0.8 else 1.0) >= (currentFish.sum() + fishSize)
 }
 
+/////////////////////////////////////////////////////////////////
 fun canAddFish(tankSize: Float, currentFish: List<Int>, fishSize: Int = 2, hasDecoration: Boolean = true): Boolean {
     val myArray = IntArray(currentFish.size) { i -> currentFish[i] * fishSize }
     val fishAfterCalculation = myArray.sum()
@@ -114,11 +134,12 @@ fun canAddFish(tankSize: Float, currentFish: List<Int>, fishSize: Int = 2, hasDe
 
 }
 
-
+////////////////////////////////////////////////////////////////////
 fun swim(time: Int = 0, speed: String = "fast") {
     println("fishes are swimming $speed at the speed of $time km/h")
 }
 
+/////////////////////////////////////////////////////////////////////
 fun dayOfWeek() {
     println("What day is it today")
     val dayOfWeek: String? = when (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
@@ -133,7 +154,7 @@ fun dayOfWeek() {
     }
     println("Today is $dayOfWeek")
 }
-
+//////////////////////////////////////////////////////////////////////////////
 
 // A parameter (day) is specified by its name a colon :  followed by its type and then we have
 //colon and the return type
@@ -163,6 +184,7 @@ fun fishFood(day: String): String {
        return food*/
 }
 
+/////////////////////////////////////////////////////////////////////////////////
 // randomDay() : String {}   String is a returnType
 fun randomDay(): String {
     val week = listOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday")
@@ -171,18 +193,20 @@ fun randomDay(): String {
     //Random().nextInt(7) is a builtin function
     return week[Random().nextInt(7)]
 }
-
+//////////////////////////////////////////////////////////////////////////////////
 
 fun randomNumber(): Int {
     val listOfNumber = listOf(1, 2, 3, 4, 5, 6, 7)
     return listOfNumber[Random().nextInt(3)]
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
 fun randomNumberDynamicBound(bound: Int): Int {
     val listOfNumber = listOf(1, 2, 3, 4, 5, 6, 7)
     return listOfNumber[Random().nextInt(bound)]
 }
 
+///////////////////////////////////////////////////////////////////////////////////
 fun getFortuneCookie(birthday: Int): String {
     val listOfFortunes = listOf(
         "You will have a great day!", "Things will go well for you today.",
@@ -199,10 +223,11 @@ fun getFortuneCookie(birthday: Int): String {
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////////
 fun getBirthday(): Int {
     println("Enter your birthday:")
     // if value is null elvis operation ( :? ) return one
     /* val birthday = readLine()?.toIntOrNull() ?: 1*/
     return readLine()?.toIntOrNull() ?: 1
 }
-
+//////////////////////////////////////////////////////////////////////////////////
