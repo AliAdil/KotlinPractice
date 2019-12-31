@@ -3,14 +3,19 @@ import java.util.*
 fun main(args: Array<String>) {
 
     println("${if (args[0].toInt() < 12) "Good morning, Kotlin" else "Good Night, Kotlin"}!")
-    feedTheFish()
+
+   // feedTheFish()
+  println(canAddFish(10.0f, listOf(2,2,2),hasDecoration = false))
+  println(canAddFishReal(10.0, listOf(2,2,2),hasDecorations = false))
+
+/*
     var fortune: String
 
     for (i in 1..10) {
         fortune = getFortuneCookie(getBirthday())
         println("\n Your fortune is : $fortune")
         if (fortune.contains("Take it easy")) break;
-    }
+    }*/
     /* val isUnit = println("This is an expression")
      println(isUnit)
 
@@ -23,6 +28,55 @@ fun main(args: Array<String>) {
 
     /*dayOfWeek()*/
 
+}
+
+// it is a good practice to use undefined parameters first and then default otherwise
+//compiler will give an error or you  can call by name e.g. shouldChangeWater(day="tuesday")
+fun shouldChangeWater(
+    day: String,
+    temperature: Int = 22,
+    dirty: Int = 20
+): Boolean {
+    return true
+}
+
+fun canAddFishReal(tankSize: Double, currentFish: List<Int>, fishSize: Int = 2, hasDecorations: Boolean = true): Boolean {
+    return (tankSize * if (hasDecorations) 0.8 else 1.0) >= (currentFish.sum() + fishSize)
+}
+fun canAddFish(tankSize: Float, currentFish: List<Int>, fishSize: Int = 2, hasDecoration: Boolean = true) : Boolean {
+    val myArray = IntArray(currentFish.size) { i -> currentFish[i] * fishSize}
+    val fishAfterCalculation = myArray.sum()
+    val tankSizeAfterCalculation : Float
+    if (hasDecoration) {
+        tankSizeAfterCalculation = (80 * tankSize) / 100}
+    else{
+        tankSizeAfterCalculation  = tankSize}
+
+      return (fishAfterCalculation < tankSizeAfterCalculation )
+
+}
+
+fun feedTheFish() {
+    val day = randomDay()
+    val dayNumber = randomNumber()
+    val food = fishFood(day)
+    // val food = "pellets"
+    println("Today is $day and this fish eat $food and day number $dayNumber")
+    swim(50)
+    // function with argument
+    shouldChangeWater(day, 20, 50)
+    // function with one argument and use two default arguments
+    shouldChangeWater(day)
+    // function with with two argument but not in order it is using one default parameter
+    shouldChangeWater(day, dirty = 50)
+
+    if (shouldChangeWater(day)) {
+        println("Change the water")
+    }
+}
+
+fun swim(time: Int = 0, speed: String = "fast") {
+    println("fishes are swimming $speed at the speed of $time km/h")
 }
 
 fun dayOfWeek() {
@@ -40,14 +94,6 @@ fun dayOfWeek() {
     println("Today is $dayOfWeek")
 }
 
-fun feedTheFish() {
-    val day = randomDay()
-    val dayNumber = randomNumber()
-    val food = fishFood(day)
-    // val food = "pellets"
-    println("Today is $day and this fish eat $food and day number $dayNumber")
-
-}
 
 // A parameter (day) is specified by its name a colon :  followed by its type and then we have
 //colon and the return type
@@ -91,7 +137,8 @@ fun randomNumber(): Int {
     val listOfNumber = listOf(1, 2, 3, 4, 5, 6, 7)
     return listOfNumber[Random().nextInt(3)]
 }
-fun randomNumberDynamicBound(bound : Int ): Int {
+
+fun randomNumberDynamicBound(bound: Int): Int {
     val listOfNumber = listOf(1, 2, 3, 4, 5, 6, 7)
     return listOfNumber[Random().nextInt(bound)]
 }
@@ -104,10 +151,10 @@ fun getFortuneCookie(birthday: Int): String {
         "Treasure your friends because they are your greatest fortune."
     )
     // val remainder = birthday.div(listOfFortunes.size)
-    return when(birthday){
-        in 1..10 -> listOfFortunes [randomNumberDynamicBound(1)]
-        11,15 -> listOfFortunes [4]
-        in 21 .. 31 -> listOfFortunes[randomNumberDynamicBound(7)]
+    return when (birthday) {
+        in 1..10 -> listOfFortunes[randomNumberDynamicBound(1)]
+        11, 15 -> listOfFortunes[4]
+        in 21..31 -> listOfFortunes[randomNumberDynamicBound(7)]
         else -> listOfFortunes[birthday.rem(listOfFortunes.size)]
     }
 }
@@ -118,3 +165,4 @@ fun getBirthday(): Int {
     /* val birthday = readLine()?.toIntOrNull() ?: 1*/
     return readLine()?.toIntOrNull() ?: 1
 }
+
