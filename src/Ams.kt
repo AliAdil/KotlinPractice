@@ -36,6 +36,12 @@ fun main(args: Array<String>) {
      println(message)*/
 
     /*dayOfWeek()*/
+    var fortune: String
+    for (i in 1..10) {
+        fortune =  getFortuneCookie(getBirthday())
+        println("\n Your fortune is : $fortune")
+        if (fortune.contains("Take it easy")) break;
+    }
 
 }
  fun makeNewAquarium() = println("Building a new aquarium.......")
