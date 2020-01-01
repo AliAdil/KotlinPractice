@@ -1,8 +1,14 @@
 fun main(args: Array<String>) {
-    println("What is your mood\n")
+    //println("What is your mood\n")
     //val mood:String = readLine().toString()
     //whatShouldIDoToday(mood, "Sunny")
-    println(whatShouldIDoToday(readLine()!!))
+    /*println(whatShouldIDoToday(readLine()!!))*/
+    eagerExample()
+}
+//function using filter
+// by default eager is implemented on list
+fun eagerExample(){
+    val decoration = listOf("rocks","pagoda","plastic plant","aligator","flowerpot")
 }
 
 fun whatShouldIDoToday2(mood: String, weather: String = "Sunny", temperature: Int = 24) {
@@ -96,3 +102,14 @@ fun main(args: Array<String>) {
     }
 }*/
 
+//Filter are standard library function on list in kotlin
+// filters are both eager and lazy
+
+/*val decoration = listOf("rocks","plants","plastic","aligator","flowerpot")
+println(decoration.filter { true })*/
+
+/*val decoration = listOf("rocks","plants","plastic","aligator","flowerpot")
+println(decoration.filter { it[0] == 'p' })*/
+
+/*val decoration = listOf("rocks","plants","plastic","aligator","flowerpot")
+println(decoration.filter { it[0] == 'p' || it[0] =='a' })*/
