@@ -36,11 +36,23 @@ fun main(args: Array<String>) {
      println(message)*/
 
     /*dayOfWeek()*/
-    var fortune: String
-    for (i in 1..10) {
+    var fortune: String = ""
+  /*  for (i in 1..10) {
         fortune =  getFortuneCookie(getBirthday())
         println("\n Your fortune is : $fortune")
         if (fortune.contains("Take it easy")) break;
+    }*/
+
+/*   repeat (10) {
+        fortune =  getFortuneCookie(getBirthday())
+        println("\n Your fortune is : $fortune")
+        //if (fortune.contains("Take it easy")) break;
+    }*/
+
+    while (!fortune.contains("Take it easy")) {
+        fortune =  getFortuneCookie(getBirthday())
+        println("\n Your fortune is : $fortune")
+        //if (fortune.contains("Take it easy")) break;
     }
 
 }
@@ -223,7 +235,7 @@ fun getFortuneCookie(birthday: Int): String {
     // val remainder = birthday.div(listOfFortunes.size)
     return when (birthday) {
         in 1..10 -> listOfFortunes[randomNumberDynamicBound(1)]
-        11, 15 -> listOfFortunes[4]
+        11, 15 -> listOfFortunes[5]
         in 21..31 -> listOfFortunes[randomNumberDynamicBound(7)]
         else -> listOfFortunes[birthday.rem(listOfFortunes.size)]
     }
