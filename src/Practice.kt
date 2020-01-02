@@ -40,6 +40,19 @@ thus allowing you to treat the elements as non-null objects.
         println("\n "+it+" "+it.length)
     }
 
+/*Partitioning
+
+Another filtering function – partition() – filters a collection
+by a predicate and keeps the elements that don't match it in a
+separate list. So, you have a Pair of Lists as a return value:
+the first list containing elements that match the predicate and
+ the second one containing everything else from the original
+ collection.*/
+    val numberPartitioning = listOf("one","two","three","four")
+    val(match,rest) = numberPartitioning.partition { it.length>3 &&  (it.contains('t') ) && it.endsWith('e') }
+    println("match "+match)
+    println("rest"+rest)
+
     val spices = listOf("curry", "pepper", "cayenne", "ginger", "red curry", "red pepper")
     val startAndEnd = spices.filter { it.startsWith('c') }.filter { it.endsWith('e') }
     println(startAndEnd)
