@@ -5,6 +5,29 @@ fun main(args: Array<String>) {
     println("${if (args[0].toInt() < 12) "Good morning, Kotlin" else "Good Night, Kotlin"}!")
 
     feedTheFish()
+
+    var dirty = 20
+// WaterFilter can b any function can take int and return int
+    val waterFilter:(Int)-> Int ={dirty -> dirty/2}
+    //Named function not a lambda
+    fun feedFish(dirty:Int) = dirty +10
+    // Higher order function take function as a argument
+    fun updateDirty(dirty: Int, operation: (Int)->Int):Int{
+        return operation(dirty)
+    }
+
+
+    val list = listOf(1,2,3,4,5,6,7,8,9,10,11,12)
+    val rollDice :(List<Int>) -> Int ={list-> list.random()}
+    /*println("I am random "+rollDice(list))*/
+    val side = 0
+
+    val rollDice2= {Random().nextInt(side)+1}
+    val rollDice3= {side : Int -> Random().nextInt(side)+1}
+    val rollDice4 :(Int)->Int  = {side -> if (side==0)0 else Random().nextInt(side)+1}
+   gamePlay(rollDice4(4))
+
+    println("I am random "+rollDice4(side))
   /*  var bubbles = 0
     while (bubbles < 50){
         bubbles++
@@ -56,6 +79,10 @@ fun main(args: Array<String>) {
     }*/
 
 }
+fun gamePlay(rollDice:Int){
+    println (rollDice)
+
+}
  fun makeNewAquarium() = println("Building a new aquarium.......")
 //Any Can Hold any type of Object
 fun aquariumStatusReport(aquarium : Any = makeNewAquarium()){
@@ -92,15 +119,20 @@ fun feedTheFish() {
 
 
 }
+
+
+
+
+fun updateDirty(dirty: Int, operation: (Int)->Int):Int{
+    return operation(dirty)
+}
 var dirty = 20
 // WaterFilter can b any function can take int and return int
 val waterFilter:(Int)-> Int ={dirty -> dirty/2}
 //Named function not a lambda
 fun feedFish(dirty:Int) = dirty +10
 // Higher order function take function as a argument
-fun updateDirty(dirty: Int, operation: (Int)->Int):Int{
-    return operation(dirty)
-}
+
 fun dirtyProcessor (){
     dirty = updateDirty(dirty,waterFilter)
     println(dirty)
@@ -117,6 +149,8 @@ fun dirtyProcessor (){
 
 
 }
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////
 // it is a good practice to use undefined parameters first and then default otherwise
