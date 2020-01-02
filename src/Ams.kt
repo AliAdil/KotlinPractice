@@ -5,17 +5,17 @@ fun main(args: Array<String>) {
     println("${if (args[0].toInt() < 12) "Good morning, Kotlin" else "Good Night, Kotlin"}!")
 
     feedTheFish()
-    var bubbles = 0
+  /*  var bubbles = 0
     while (bubbles < 50){
         bubbles++
         println(bubbles)
-    }
+    }*/
 
     // Control flow function from standard libaray
     // repeat (function from standard libaray)
-    repeat(2){
+    /*repeat(2){
     println("A fish is swing")
-    }
+    }*/
     /* println(canAddFish(10.0f, listOf(2,2,2),hasDecoration = false))
      println(canAddFishReal(10.0, listOf(2,2,2),hasDecorations = false))*
        var fortune: String
@@ -36,7 +36,7 @@ fun main(args: Array<String>) {
      println(message)*/
 
     /*dayOfWeek()*/
-    var fortune: String = ""
+  //  var fortune: String = ""
   /*  for (i in 1..10) {
         fortune =  getFortuneCookie(getBirthday())
         println("\n Your fortune is : $fortune")
@@ -49,11 +49,11 @@ fun main(args: Array<String>) {
         //if (fortune.contains("Take it easy")) break;
     }*/
 
-    while (!fortune.contains("Take it easy")) {
+  /*  while (!fortune.contains("Take it easy")) {
         fortune =  getFortuneCookie(getBirthday())
         println("\n Your fortune is : $fortune")
         //if (fortune.contains("Take it easy")) break;
-    }
+    }*/
 
 }
  fun makeNewAquarium() = println("Building a new aquarium.......")
@@ -66,26 +66,56 @@ fun feedTheFish() {
     val day = randomDay()
     val dayNumber = randomNumber()
     val food = fishFood(day)
+    if (shouldChangeWater(day)) {
+        println("\n Change the water")
+    }
+
+    //call dirty processor
+    dirtyProcessor()
+
     // val food = "pellets"
-    println("Today is $day and this fish eat $food and day number $dayNumber")
-    swim(50)
+    //println("Today is $day and this fish eat $food and day number $dayNumber")
+   /* swim(50)*/
     // function with argument
-    println("\n" + shouldChangeWater(day, 20, 20))
+   // println("\n" + shouldChangeWater(day, 20, 20))
     // function with one argument and use two default arguments
 
-    println(
+ /*   println(
         "\n Today is $day and should we change water whats your answer: " + if (shouldChangeWater(day, 30, 5)) {
             "Yes"
         } else {
             "No"
         }
-    )
+    )*/
     // function with with two argument but not in order it is using one default parameter
-    println("\n" + shouldChangeWater(day, dirty = 50))
+   // println("\n" + shouldChangeWater(day, dirty = 50))
 
-    if (shouldChangeWater(day)) {
-        println("\n Change the water")
-    }
+
+}
+var dirty = 20
+// WaterFilter can b any function can take int and return int
+val waterFilter:(Int)-> Int ={dirty -> dirty/2}
+//Named function not a lambda
+fun feedFish(dirty:Int) = dirty +10
+// Higher order function take function as a argument
+fun updateDirty(dirty: Int, operation: (Int)->Int):Int{
+    return operation(dirty)
+}
+fun dirtyProcessor (){
+    dirty = updateDirty(dirty,waterFilter)
+    println(dirty)
+    // Name function called by double colon ::  we are not try
+    // to call function we are just passing reference
+    dirty = updateDirty(dirty,::feedFish)
+    println(dirty)
+    //Last parameter called syntax
+    // lambda is an argument to update dirty
+    // but we are passing it as last parameter we dont have
+    // to put it into parenthesis
+    dirty = updateDirty(dirty,{dirty -> dirty + 50})
+    println(dirty)
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -100,7 +130,7 @@ fun shouldChangeWater(day: String, temperature: Int = 22, dirty: Int = getDirtyS
         isToHot(temperature) -> true
         isDirty(dirty) -> true
         isSunday(day) -> true
-        else -> false
+        else -> true
     }
 
     //Little simplified

@@ -6,6 +6,21 @@ fun main(args: Array<String>) {
     //whatShouldIDoToday(mood, "Sunny")
     /*println(whatShouldIDoToday(readLine()!!))*/
     // eagerExample()
+    var dirty = 20
+    // WaterFilter can b any function can take int and return int
+    val waterFilter:(Int)-> Int ={dirty -> dirty/2}
+    fun feedFish(dirty:Int) = dirty +10
+
+   //Higher Order function
+    //is just any function that takes a function as the argument
+   //operation function of int to int
+    //Kotlin prefers function arguments to be the last parameter
+    fun updateDirty(dirty: Int, operation: (Int)->Int):Int{
+        return operation(dirty)
+    }
+
+
+
     practiceTime()
 }
 
@@ -70,6 +85,9 @@ the first list containing elements that match the predicate and
 }
 
 
+
+
+
 //function using filter
 // by default eager is implemented on list
 fun eagerExample() {
@@ -98,7 +116,6 @@ fun eagerExample() {
     println("first: ${lazyMap.first()}")
     println("all: ${lazyMap.toList()}")
 }
-
 fun whatShouldIDoToday2(mood: String, weather: String = "Sunny", temperature: Int = 24) {
 
     val result = when (mood) {
@@ -124,7 +141,6 @@ fun whatShouldIDoToday2(mood: String, weather: String = "Sunny", temperature: In
     println(result)
 
 }
-
 fun whatShouldIDoToday(mood: String, weather: String = "Sunny", temperature: Int = 24) {
     val result = when {
         isHappy(mood) && isRainy(weather) -> "Go for walk"
@@ -138,7 +154,6 @@ fun whatShouldIDoToday(mood: String, weather: String = "Sunny", temperature: Int
     }
     println(result)
 }
-
 fun isHappy(mood: String) = mood == "Happy"
 fun isSad(mood: String) = mood == "Sad"
 fun isAngry(mood: String) = mood == "Angry"
@@ -146,8 +161,6 @@ fun isRainy(weather: String) = weather == "Rainy"
 fun isSunny(weather: String) = weather == "Sunny"
 fun isSnow(weather: String) = weather == "Snow"
 fun temperatureCheck(temperature: Int) = temperature > 30
-
-
 /*Challenge
 fun main(args: Array<String>) {
     println(whatShouldIDoToday("happy", "sunny"))
@@ -189,15 +202,29 @@ fun main(args: Array<String>) {
         println("\nYour fortune is: $fortune")
     }
 }*/
-
 //Filter are standard library function on list in kotlin
 // filters are both eager and lazy
 
 /*val decoration = listOf("rocks","plants","plastic","aligator","flowerpot")
 println(decoration.filter { true })*/
-
 /*val decoration = listOf("rocks","plants","plastic","aligator","flowerpot")
 println(decoration.filter { it[0] == 'p' })*/
-
 /*val decoration = listOf("rocks","plants","plastic","aligator","flowerpot")
 println(decoration.filter { it[0] == 'p' || it[0] =='a' })*/
+//Kotlin Lambdas
+/*{ println("Hello")}()
+Hello
+
+val swim = { println("swim \n")}
+swim()
+swim
+*/
+/*  -> is called function arrow  */
+/*
+val waterFilter = {dirty:Int -> dirty/2}
+println(waterFilter)*/
+
+/*
+val dirty = 20
+val waterFilter = {dirty:Int -> dirty/2}
+waterFilter(dirty)*/
