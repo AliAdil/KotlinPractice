@@ -1,14 +1,58 @@
+import kotlin.math.ln
+
 fun main(args: Array<String>) {
     //println("What is your mood\n")
     //val mood:String = readLine().toString()
     //whatShouldIDoToday(mood, "Sunny")
     /*println(whatShouldIDoToday(readLine()!!))*/
-    eagerExample()
+   // eagerExample()
+    practiceTime()
 }
+fun practiceTime(){
+    val spices = listOf("curry","pepper","cayenne","ginger","red curry","red pepper")
+    val startAndEnd= spices.filter { it.startsWith('c') }.filter { it.endsWith('e') }
+    println(startAndEnd)
+
+    val anotherWayStartEnd = spices.filter { it.startsWith('c') && it.endsWith('e') }
+    println(anotherWayStartEnd)
+
+    val take3StartWithC =spices.take(3).filter { it.startsWith('c') }
+    println(take3StartWithC)
+
+    val sortedList =  spices.filter {it.contains("curry")}.sortedBy { it.length }
+    println(sortedList)
+
+
+}
+
+
 //function using filter
 // by default eager is implemented on list
 fun eagerExample(){
     val decoration = listOf("rocks","pagoda","plastic plant","aligator","flowerpot")
+    //eager will hold NEW list containing the decoration that start with p
+    val eager = decoration.filter { it[0] =='p' }
+   /* println(eager)*/
+
+    //For lazy calls we can use sequence
+    //A sequence is a collection that can only look at one
+    // item at a time starting at the beginning and to end
+    //Conveniently, this is exactly the API filter needs
+    //when returning filter result as
+    // sequence filter variable will not hold new list
+    // it will hold a sequence of all of the list elements
+    //and knowledge of the filter to apply to  its elements.
+    val filtered = decoration.asSequence().filter { it[0] == 'p' }
+ /*   print(filtered)
+    print("\n"+filtered.toList())*/
+    //apply map Lazily
+    val lazyMap = decoration.asSequence().map {
+    println("map : $it")
+     it
+    }
+    println("\n"+lazyMap)
+    println("first: ${lazyMap.first()}")
+    println("all: ${lazyMap.toList()}")
 }
 
 fun whatShouldIDoToday2(mood: String, weather: String = "Sunny", temperature: Int = 24) {
