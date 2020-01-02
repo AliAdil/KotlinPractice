@@ -5,21 +5,52 @@ fun main(args: Array<String>) {
     //val mood:String = readLine().toString()
     //whatShouldIDoToday(mood, "Sunny")
     /*println(whatShouldIDoToday(readLine()!!))*/
-   // eagerExample()
+    // eagerExample()
     practiceTime()
 }
-fun practiceTime(){
-    val spices = listOf("curry","pepper","cayenne","ginger","red curry","red pepper")
-    val startAndEnd= spices.filter { it.startsWith('c') }.filter { it.endsWith('e') }
+
+fun practiceTime() {
+
+    val numbers = listOf("one", "two", "three", "four")
+
+    val filteredIdx = numbers.filterIndexed { index, s -> (index != 3 && index != 0) && (s.length < 4) }
+    println(filteredIdx)
+
+    val filterNot = numbers.filterNot { it.length <= 3 }
+    println(filterNot)
+
+/* There are also functions that narrow the element type by filtering elements of a given type:
+    filterIsInstance() returns collection elements of a given
+     type. Being called on a List<Any>, filterIsInstance<T>()
+     returns a List<T>, thus allowing you to call functions of
+     the T type on its items.
+*/
+    val numbersS = listOf(null, 1, "two", 3.0, "four")
+    print("All Elements in upper case :")
+    numbersS.filterIsInstance<String>().forEach {
+        println(it.toUpperCase())
+    }
+
+/*filterNotNull() returns all non-null elements. Being called
+on a List<T?>, filterNotNull() returns a List<T: Any>,
+thus allowing you to treat the elements as non-null objects.
+*/
+    val numbersWithNotNull = listOf(null,"One","Two",null)
+    val notNullValuefilter = numbersWithNotNull.filterNotNull().forEach{
+        println("\n "+it+" "+it.length)
+    }
+
+    val spices = listOf("curry", "pepper", "cayenne", "ginger", "red curry", "red pepper")
+    val startAndEnd = spices.filter { it.startsWith('c') }.filter { it.endsWith('e') }
     println(startAndEnd)
 
     val anotherWayStartEnd = spices.filter { it.startsWith('c') && it.endsWith('e') }
     println(anotherWayStartEnd)
 
-    val take3StartWithC =spices.take(3).filter { it.startsWith('c') }
+    val take3StartWithC = spices.take(3).filter { it.startsWith('c') }
     println(take3StartWithC)
 
-    val sortedList =  spices.filter {it.contains("curry")}.sortedBy { it.length }
+    val sortedList = spices.filter { it.contains("curry") }.sortedBy { it.length }
     println(sortedList)
 
 
@@ -28,11 +59,11 @@ fun practiceTime(){
 
 //function using filter
 // by default eager is implemented on list
-fun eagerExample(){
-    val decoration = listOf("rocks","pagoda","plastic plant","aligator","flowerpot")
+fun eagerExample() {
+    val decoration = listOf("rocks", "pagoda", "plastic plant", "aligator", "flowerpot")
     //eager will hold NEW list containing the decoration that start with p
-    val eager = decoration.filter { it[0] =='p' }
-   /* println(eager)*/
+    val eager = decoration.filter { it[0] == 'p' }
+    /* println(eager)*/
 
     //For lazy calls we can use sequence
     //A sequence is a collection that can only look at one
@@ -43,14 +74,14 @@ fun eagerExample(){
     // it will hold a sequence of all of the list elements
     //and knowledge of the filter to apply to  its elements.
     val filtered = decoration.asSequence().filter { it[0] == 'p' }
- /*   print(filtered)
-    print("\n"+filtered.toList())*/
+    /*   print(filtered)
+       print("\n"+filtered.toList())*/
     //apply map Lazily
     val lazyMap = decoration.asSequence().map {
-    println("map : $it")
-     it
+        println("map : $it")
+        it
     }
-    println("\n"+lazyMap)
+    println("\n" + lazyMap)
     println("first: ${lazyMap.first()}")
     println("all: ${lazyMap.toList()}")
 }
