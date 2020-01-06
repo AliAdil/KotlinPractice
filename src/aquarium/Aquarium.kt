@@ -1,6 +1,7 @@
 package aquarium
+// We make constructor just like we are passing argument to a function
 
-class Aquarium {
+class Aquarium (var length : Int, var width : Int, var  height: Int){
     //properties and characteristics of aquarium class
     // currently properties are val which makes them
     //Immutable means that they can't be modified after they're created
@@ -13,20 +14,18 @@ class Aquarium {
         get() = width * height * length / 1000
 */
 
-    //difference btw val and var is tha variable declared as val cannot be changed
+    //difference btw val and var is that variable declared as val cannot be changed
 //once they have been assigned a value and variable declared with var can be
 // changed
-    var width: Int = 20
-    var height: Int = 40
-    var length: Int = 100
+/*    var width:  Int = width
+    var height: Int = height
+    var length: Int = length*/
     // We can access this as property
-    var volume: Int
-        get() = width * height * length / 1000
+    var volume: Int get() = width * height * length / 1000
         //by convention name to the setter parameter is value but you can
         //choose different if you prefer
         //changing value in cubic meter
         set(value){height = (value *1000)/(width*length)}
-
 
     //third way
     /*  get(){

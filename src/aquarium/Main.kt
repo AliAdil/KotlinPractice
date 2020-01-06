@@ -1,8 +1,13 @@
 package aquarium
 fun main(args: Array<String>){
    val myAquarium =  buildAquarium()
-    println("Volume: ${myAquarium.volume}")
+    println("Volume: ${myAquarium.volume} liters")
 
+    val simpleSpice = SimpleSpice()
+    println("Name :${simpleSpice.name} & Temperature: ${simpleSpice.heat}")
+
+    val smallAquarium = Aquarium(length = 20,width = 15,height = 30)
+    println("Small Aquarium: ${smallAquarium.volume} liters")
 
 }
 
@@ -13,7 +18,7 @@ fun main(args: Array<String>){
 // A module is a set of kotlin files compiled together
 // when it is internal, we can use it from anywhere inside our project
 // but if we compile the library it wouldn't be exported as function
-internal fun buildAquarium() = Aquarium()
+ fun buildAquarium() = Aquarium(100,20,40)
 
 /* fun buildAquarium() {
     // it is like new in other languages
