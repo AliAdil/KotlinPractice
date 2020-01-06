@@ -1,15 +1,14 @@
 package aquarium
 fun main(args: Array<String>){
-     buildAquarium()
-     val spice =  listOf(
-      Spice("Red Chili", "hot")
-      , Spice("black pepper", "moderate"),
-      Spice("green curry", "mild"),
-      Spice("hot pepper", "extremely spicy"),
-      Spice("cayenne", "spicy")
-     )
+    buildAquarium()
+    makeSpices()
+    makeFish()
 
-   makeSalt()
+
+
+
+
+
 /* val spice = Spice("cayenne",spiciness = "spicy")*/
 /*   val spiceList = spice.filter { it.heat < 5 }*/
     /* println("\n second list"+spice)*/
@@ -28,8 +27,6 @@ fun main(args: Array<String>){
            "length ${myAquarium2.length} " +
             "width ${myAquarium2.width} "+
              "height ${myAquarium2.height}")*/
-
-
 }
 
 // it will only available inside the file which is containing declaration
@@ -67,3 +64,27 @@ fun main(args: Array<String>){
 
 
  }
+
+fun makeSpices(){
+    val spice =  listOf(
+        Spice("Red Chili", "hot")
+        , Spice("black pepper", "moderate"),
+        Spice("green curry", "mild"),
+        Spice("hot pepper", "extremely spicy"),
+        Spice("cayenne", "spicy")
+    )
+    makeSalt()
+}
+
+fun feedFish(fish : FishAction){
+    //make some food then
+    fish.eat()
+
+}
+fun makeFish(){
+    val shark = Shark()
+    val pleco = Plecostomus()
+    println("Shark: ${shark.color} \n Plecostomus : ${pleco.color}")
+    shark.eat()
+    pleco.eat()
+}
