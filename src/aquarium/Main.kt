@@ -1,13 +1,20 @@
 package aquarium
 fun main(args: Array<String>){
-   val myAquarium =  buildAquarium()
-    println("Volume: ${myAquarium.volume} liters")
+     buildAquarium()
+//    println("Volume: ${myAquarium.volume} liters")
 
-    val simpleSpice = SimpleSpice()
+  /*  val simpleSpice = SimpleSpice()
     println("Name :${simpleSpice.name} & Temperature: ${simpleSpice.heat}")
-
-    val smallAquarium = Aquarium(length = 20,width = 15,height = 30)
+*/
+  /*  val smallAquarium = Aquarium(length = 20,width = 15,height = 30)
     println("Small Aquarium: ${smallAquarium.volume} liters")
+
+    val myAquarium2 = Aquarium(numberOfFish = 9)
+    println("Small Aquarium 2: ${myAquarium2.volume} liters with "+
+           "length ${myAquarium2.length} " +
+            "width ${myAquarium2.width} "+
+             "height ${myAquarium2.height}")*/
+
 
 }
 
@@ -18,21 +25,31 @@ fun main(args: Array<String>){
 // A module is a set of kotlin files compiled together
 // when it is internal, we can use it from anywhere inside our project
 // but if we compile the library it wouldn't be exported as function
- fun buildAquarium() = Aquarium(100,20,40)
+// fun buildAquarium() = Aquarium(100,20,40)
 
-/* fun buildAquarium() {
+ fun buildAquarium() {
     // it is like new in other languages
     //it creates the new instance of aquarium by calling its constructor
     //constructor construct object instances from class descriptions
-    val myAquarium = Aquarium()
+ //   val myAquarium = Aquarium()
     //Can access properties directly
     // Under the hood kotlin actually made a getter for all three properties
     //even so we didn't write any code
-    print("Length: ${myAquarium.length} " +
+ /*   print("Length: ${myAquarium.length} " +
             "Width: ${myAquarium.width} "+
             "Height: ${myAquarium.height} ")
     myAquarium.height = 80
     println("Height ${myAquarium.height} cm")
-    println("Volume ${myAquarium.volume} liters")
+    println("Volume ${myAquarium.volume} liters")*/
 
-}*/
+  /*val smallAquarium = Aquarium(length = 20,width = 15,height = 30)
+  println("Small Aquarium: ${smallAquarium.volume} liters")*/
+  var numberOfFish = 2
+  val myAquarium2 = Aquarium(numberOfFish)
+  println("Small Aquarium number of fish:${numberOfFish} and water is ${myAquarium2.volume} liters with "+
+          "length ${myAquarium2.length}cm " +
+          "width ${myAquarium2.width}cm "+
+          "height ${myAquarium2.height}cm")
+
+
+ }

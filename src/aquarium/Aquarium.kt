@@ -1,7 +1,8 @@
 package aquarium
 // We make constructor just like we are passing argument to a function
 
-class Aquarium (var length : Int, var width : Int, var  height: Int){
+class Aquarium (var length : Int = 100, var width : Int =20, var  height: Int =10){
+
     //properties and characteristics of aquarium class
     // currently properties are val which makes them
     //Immutable means that they can't be modified after they're created
@@ -21,11 +22,23 @@ class Aquarium (var length : Int, var width : Int, var  height: Int){
     var height: Int = height
     var length: Int = length*/
     // We can access this as property
-    var volume: Int get() = width * height * length / 1000
+    var volume: Int
+        get() = width * height * length / 1000
         //by convention name to the setter parameter is value but you can
         //choose different if you prefer
         //changing value in cubic meter
         set(value){height = (value *1000)/(width*length)}
+
+    //We need to put it below volume because
+    //properties get initialized in the order in which they are defined
+    var water = volume * 0.9
+
+    constructor(numberOfFish: Int) : this(){
+        val  water : Int = numberOfFish *2000 //cm3
+        val tank :Double = water + water * 0.1
+        height = (tank/ (length *width)).toInt()
+
+    }
 
     //third way
     /*  get(){
