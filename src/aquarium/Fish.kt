@@ -3,6 +3,7 @@ package aquarium
 //with default parameters constructor overloading is not needed
 class Fish (val friendly: Boolean = true , volumeNeeded : Int) {
     val size : Int
+    // init block always run before any secondary constructor
     init{
         println("First init block")
     }
@@ -21,7 +22,14 @@ class Fish (val friendly: Boolean = true , volumeNeeded : Int) {
     init {
         println("constructed fish of size $volumeNeeded final size ${this.size}")
     }
+
+    init {
+        println("last init block")
+    }
 }
+
+// Consider making helper method
+fun makeDefaultFish() = Fish(true,50)
 
 fun fishExample(){
     val fish = Fish(true,20)

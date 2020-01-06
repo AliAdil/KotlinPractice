@@ -1,6 +1,20 @@
 package aquarium
 fun main(args: Array<String>){
      buildAquarium()
+     val spice =  listOf(
+      Spice("Red Chili", "hot")
+      , Spice("black pepper", "moderate"),
+      Spice("green curry", "mild"),
+      Spice("hot pepper", "extremely spicy"),
+      Spice("cayenne", "spicy")
+     )
+
+   makeSalt()
+/* val spice = Spice("cayenne",spiciness = "spicy")*/
+/*   val spiceList = spice.filter { it.heat < 5 }*/
+    /* println("\n second list"+spice)*/
+
+
 //    println("Volume: ${myAquarium.volume} liters")
 
   /*  val simpleSpice = SimpleSpice()
