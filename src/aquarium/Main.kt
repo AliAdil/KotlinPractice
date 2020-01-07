@@ -76,6 +76,8 @@ fun makeSpices(){
     makeSalt()
 }
 
+//every fish we pass to feedFish needs to implement feed fish
+//only fish that implement fish action can be passed into "feed fish"
 fun feedFish(fish : FishAction){
     //make some food then
     fish.eat()
